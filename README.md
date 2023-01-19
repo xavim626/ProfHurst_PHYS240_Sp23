@@ -1,6 +1,6 @@
 # Overview
 
-This repository is for Professor Hurst's PHYS 240 class Sprint 2023.
+This repository is for Professor Hurst's PHYS 240 class Spring 2023.
 
 ## Forking the Repo
 
