@@ -4,7 +4,7 @@ This repository is for Professor Hurst's PHYS 240 class Spring 2023. Follow the 
 
 ## Forking the Repo
 
-1. In the upper-right hand corner, find the ‘Fork’ button. Click Fork > Create a new fork.
+1. In the upper-right hand corner, find the ‘Fork’ button. Click Fork > Create a new fork. You should fork the main branch of the repo. 
 2. Navigate back to your home profile and verify that you see the new repository ProfHurst_PHYS240_Sp23 in your list of repositories.
 
 ## Submitting Assignments

@@ -21,6 +21,6 @@ def print_hi_twice(name):
 # Other IDEs might have a slightly different configuration.
 if __name__ == '__main__':
     print_hi('Hilary')
-    # print_hi_twice('Hilary')
+    print_hi_twice('Hilary')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
