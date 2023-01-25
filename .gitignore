@@ -1,2 +1,4 @@
 # Specify filepatterns or speficiy file names you want git to ignore
 **/.idea
+/.idea
+/.idea/workspace.xml
