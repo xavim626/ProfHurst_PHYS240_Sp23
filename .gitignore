@@ -5,3 +5,4 @@
 /.idea/misc.xml
 .DS_store
 */.ipynb_checkpoints/*
+/.ipynb_checkpoints
