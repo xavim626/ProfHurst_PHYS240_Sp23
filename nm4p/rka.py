@@ -1,5 +1,6 @@
 import numpy as np
-from rk4 import rk4
+from nm4p.rk4 import rk4
+
 
 def rka(x, t, tau, err, derivsRK, param):
     """
@@ -53,8 +54,8 @@ def rka(x, t, tau, err, derivsRK, param):
 
         # If error is acceptable, return computed values
         if errorRatio < 1:
-            return np.array([xSmall, t, tau])
+            return xSmall, t, tau
 
     # Issue warning message if the error bound is never satisfied.
     print('Warning! Adaptive Runge-Kutta routine failed.')
-    return np.array([xSmall, t, tau])
+    return xSmall, t, tau
