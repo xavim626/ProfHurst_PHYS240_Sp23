@@ -2,4 +2,9 @@
 **/.idea
 /.idea
 /.idea/workspace.xml
+/.idea/misc.xml
 .DS_store
+*/.ipynb_checkpoints/*
+/.ipynb_checkpoints
+*misc.xml
+*/__pycache__/
