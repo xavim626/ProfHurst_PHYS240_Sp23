@@ -3,6 +3,8 @@
 # Set up configuration options and special features
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import cm
+from mpl_toolkits.mplot3d import Axes3D
 
 
 # Select the numerical parameters (time step, grid spacing, etc.)
@@ -42,3 +44,46 @@ iplot = 1  # Plot counter
 nplots = 50  # Desired number of plots
 aplot = np.empty((N, nplots))
 tplot = np.empty(nplots)
+aplot[:, 0] = np.copy(a)  # Record the initial state
+tplot[0] = 0  # Record the initial time (t = 0)
+plotStep = nStep/nplots + 1
+
+# Loop over the desired number of steps
+for iStep in range(nStep):  ## MAIN LOOP ##
+
+    # Compute new values of wave amplitude using FTCS, Lax, or Lax-Wendroff method
+    if method == 1:  ### FTCS Method ###
+        a[:] = a[:] + coeff*(a[ip] - a[im])
+    elif method == 2:  ### Lax Method ###
+        a[:] = 0.5*(a[ip] + a[im]) + coeff*(a[ip] - a[im])
+    elif method == 3:  ### Lax-Wendroff Method  ###
+        a[:] = (a[:] + coeff*(a[ip] - a[im])) + coefflw*(a[ip] + a[im] - 2*a[:])
+    else:
+        raise ValueError('Incorrect index chosen for method. Must choose 1, 2, or 3')
+
+    # Periodically record a(t) for plotting
+    if (iStep+1) % plotStep < 1:  # Every plot_iter steps record
+        aplot[:, iplot] = np.copy(a)
+        tplot[iplot] = tau*(iStep+1)
+        iplot += 1
+        print('{0:g} out of {1:g} steps completed.'.format(iStep, nStep))
+
+# Plot the initial and final states.
+fig, ax = plt.subplots()
+ax.plot(x, aplot[:, 0], '-', label='Initial')
+ax.plot(x, a, '--', label='Final')
+ax.set_xlabel('x')
+ax.set_ylabel('Amplitude a(x,t)')
+ax.legend()
+
+# Plot the total wave amplitude versus position and time
+fig2 = plt.figure()
+ax2 = fig2.add_subplot(projection='3d')
+Tp, Xp = np.meshgrid(tplot[0:iplot], x)  # Arrange data into a format suitable for 3D plots.
+ax2.plot_surface(Tp, Xp, aplot[:, 0:iplot], rstride=1, cstride=1, cmap=cm.plasma)
+ax2.view_init(elev=30., azim=-140.)
+ax2.set_ylabel('Position')
+ax2.set_xlabel('Time')
+ax2.set_zlabel('Amplitude')
+
+plt.show()
